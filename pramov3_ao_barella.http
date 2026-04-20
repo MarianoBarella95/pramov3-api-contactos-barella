@@ -1,0 +1,6 @@
+@pramov3_ao_barella_HostAddress = http://localhost:5176
+
+GET {{pramov3_ao_barella_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

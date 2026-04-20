@@ -1,0 +1,8 @@
+# POR SEGURIDAD, SE ELIMINAN ESTOS ARCHIVOS
+appsettings.Development.json
+appsettings.json
+
+# CARPETAS A IGNORAR
+bin/
+obj/
+.vs/
