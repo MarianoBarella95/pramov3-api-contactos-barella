@@ -18,18 +18,18 @@ public class ContactoService
           new Contacto
           {
             Id = 2,
-            Nombre = "Fiamma",
-            Apellido = "Somavilla",
+            Nombre = "Juan Carlos",
+            Apellido = "Pérez",
             Telefono = "3517048673",
-            email = "fiammusoma@gmail.com",
+            email = "jcperez@gmail.com",
           },
           new Contacto
           {
             Id = 3,
-            Nombre = "Nélida",
-            Apellido = "Mebar",
+            Nombre = "Rodrigo",
+            Apellido = "Rodríguez",
             Telefono = "3517048673",
-            email = "nmebar@gmail.com",
+            email = "rrodriguez@gmail.com",
           }
         };
 
@@ -81,41 +81,4 @@ public class ContactoService
         _contactos.Remove(res);
         return true;    
     }
-
-    //CONSTRUCTOR    
-    // public ContactoService()
-    // {   
-    //     List<Contacto> nuevaLista = new List<Contacto>
-    //     {
-    //       new Contacto
-    //       {
-    //         Id = 1,
-    //         Nombre = "Mariano",
-    //         Apellido = "Barella",
-    //         Telefono = "3517048673",
-    //         email = "marianobarella1@gmail.com",
-    //       }, 
-    //       new Contacto
-    //       {
-    //         Id = 2,
-    //         Nombre = "Fiamma",
-    //         Apellido = "Somavilla",
-    //         Telefono = "3517048673",
-    //         email = "fiammusoma@gmail.com",
-    //       },
-    //       new Contacto
-    //       {
-    //         Id = 3,
-    //         Nombre = "Nélida",
-    //         Apellido = "Mebar",
-    //         Telefono = "3517048673",
-    //         email = "nmebar@gmail.com",
-    //       } 
-    //     };
-
-    //     foreach (var item in nuevaLista)
-    //     {
-    //         _contactos.Add(item);
-    //     }
-    // }
 }
