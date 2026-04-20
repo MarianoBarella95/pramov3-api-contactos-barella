@@ -5,8 +5,8 @@ Actividad Obligatoria realizada para la materia Programación de Aplicaciones M�
 ## Características principales:
 * Se crean los modelos **Contacto** y **Usuario**, con los atributos solicitados.
 * Posee dos servicios: **ContactoService** y **AuthService**, para manejar contactos y usuarios en memoria, y servir la lógica de la aplicación.
-* Minimal Endpoint que permite obtener y leer todos los contactos.
-* Implementación de Controllers para realizar funciones de **CRUD**: Buscar por Id, crear, editar y eliminar contactos.
+* **Minimal Endpoint** que permite obtener y leer todos los contactos.
+* Implementación de **Controllers** para realizar funciones de **CRUD**: Buscar por Id, crear, editar y eliminar contactos.
 * Se utiliza un **TokenProvider** para separar la lógica de creación del token.
 * Se protegen los endpoints de los Controllers con **[Authorize]** (Para ciertos controllers, además debe tener el rol de **"Admin"**).
 
