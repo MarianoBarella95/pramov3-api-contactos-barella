@@ -31,4 +31,19 @@ public class AuthController : ControllerBase
 
     }
 
+    [AllowAnonymous]
+    [HttpPost("register")]
+    public ActionResult register([FromBody] Usuario usuario)
+    {
+        var nuevoUsuario = _authService.crearUsuario(usuario.Nombre, usuario.Password);
+
+        if (nuevoUsuario == null)
+        {
+            return BadRequest();            
+        }
+
+        return Ok();
+    }
+
+
 }

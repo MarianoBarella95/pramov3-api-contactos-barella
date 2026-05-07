@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,10 +36,14 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// BBDD
+builder.Services.AddDbContext<DataContext>(
+    options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // INYECCIÓN DE DEPENDENCIAS
-// ELIJO SINGLETON PARA QUE LA INFORMACIÓN PUEDA PERSISTIR
-// LO QUE DURE LA EJECUCIÓN DEL PROGRAMA
-builder.Services.AddSingleton<ContactoService>();
+// CAMBIO DE SINGLETON A SCOPED PARA UNA MEJOR
+// INTERACCIÓN CON EF Y LA BBDD
+builder.Services.AddScoped<ContactoService>();
 // CREACIÓN DEL TOKEN
 builder.Services.AddSingleton<TokenProvider>();
 
@@ -48,8 +53,6 @@ builder.Services.AddScoped<AuthController>();
 // AÑADO EL CONTROLLER
 builder.Services.AddControllers();
 
-//
-builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(o =>
     {
@@ -63,6 +66,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             
         };
     });
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -83,6 +88,9 @@ app.MapGet("/minimal/contactos", (ContactoService service) =>
 .WithTags("Minimal")
 .WithName("MinimalApi")
 .WithOpenApi();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
