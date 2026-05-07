@@ -1,6 +1,7 @@
 # POR SEGURIDAD, SE ELIMINAN ESTOS ARCHIVOS
 appsettings.Development.json
 appsettings.json
+*.db
 
 # CARPETAS A IGNORAR
 bin/
