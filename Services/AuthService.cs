@@ -1,24 +1,29 @@
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using pramov3_ao_barella.Models;
 
 public class AuthService
 {
     private readonly TokenProvider _tokenProvider;
     // private readonly Usuario user = new Usuario(new Guid(), "Mariano", "1905", "Admin");
-    private readonly DataContext _context;
+    private readonly DbA358b2Pam3Context _context;
 
 
-    public AuthService(TokenProvider tokenProvider, DataContext context)
+    public AuthService(TokenProvider tokenProvider, DbA358b2Pam3Context context)
     {
         _tokenProvider = tokenProvider;
         _context = context;
     }
 
     public Usuario? crearUsuario(string nombre, string password)
-    {
+    {   
+        if (_context.Usuarios.Any(x => x.UserName == nombre))
+        {
+            return null;
+        }
+
         Usuario user = new();
-        user.Nombre = nombre;
+        user.UserName = nombre;
         user.Password = password;
         user.Rol = "Admin";
         _context.Usuarios.Add(user);
@@ -34,7 +39,7 @@ public class AuthService
             return null;
         } 
 
-        var user = _context.Usuarios.FirstOrDefault(x => x.Nombre == nombre && x.Password == password);
+        var user = _context.Usuarios.FirstOrDefault(x => x.UserName == nombre && x.Password == password);
 
         if (user == null || user.Password != password)
         {

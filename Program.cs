@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,8 +38,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // BBDD
-builder.Services.AddDbContext<DataContext>(
-    options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<pramov3_ao_barella.Models.DbA358b2Pam3Context>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // INYECCIÓN DE DEPENDENCIAS
 // CAMBIO DE SINGLETON A SCOPED PARA UNA MEJOR
@@ -59,7 +60,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         o.RequireHttpsMetadata = false;
         o.TokenValidationParameters = new TokenValidationParameters
         {
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:secret"])),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:secret"] ?? "ClaveSecretaDeRespaldo")),
             ValidIssuer = builder.Configuration["Jwt:issuer"],
             ValidAudience = builder.Configuration["Jwt:audience"],
             ClockSkew = TimeSpan.Zero

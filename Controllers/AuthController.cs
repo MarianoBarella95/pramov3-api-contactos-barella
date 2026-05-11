@@ -3,6 +3,8 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using pramov3_ao_barella.Models;
+using pramov3_ao_barella.DTO;
 
 [ApiController]
 [Route("api/auth")]
@@ -18,9 +20,9 @@ public class AuthController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("login")]
-    public ActionResult login([FromBody] Usuario usuario)
+    public ActionResult login([FromBody] LoginRequest loginRequest)
     {       
-        var token = _authService.login(usuario.Nombre, usuario.Password);
+        var token = _authService.login(loginRequest.Email, loginRequest.Password);
 
         if(token == null)
         {
@@ -35,7 +37,8 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public ActionResult register([FromBody] Usuario usuario)
     {
-        var nuevoUsuario = _authService.crearUsuario(usuario.Nombre, usuario.Password);
+
+        var nuevoUsuario = _authService.crearUsuario(usuario.UserName, usuario.Password);
 
         if (nuevoUsuario == null)
         {

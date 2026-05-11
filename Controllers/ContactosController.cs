@@ -2,6 +2,7 @@ using System.Collections.Immutable;
 using System.IO.Compression;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using pramov3_ao_barella.Models;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace pramov3_ao_barella.Models;
+namespace pramov3_ao_barella.path;
 
 public partial class Contacto
 {

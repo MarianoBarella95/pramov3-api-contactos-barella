@@ -4,6 +4,7 @@ using Microsoft.VisualBasic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SQLitePCL;
+using pramov3_ao_barella.Models;
 
 public class ContactoService
 {
@@ -37,9 +38,9 @@ public class ContactoService
     // };
 
     // ID DE LA BBDD
-    private readonly DataContext _context;
+    private readonly DbA358b2Pam3Context _context;
 
-    public ContactoService(DataContext context)
+    public ContactoService(DbA358b2Pam3Context context)
     {
         _context = context;
     }
@@ -86,7 +87,7 @@ public class ContactoService
         res.Nombre = contactoActualizado.Nombre;
         res.Apellido = contactoActualizado.Apellido;
         res.Telefono = contactoActualizado.Telefono;
-        res.email = contactoActualizado.email;
+        res.Email = contactoActualizado.Email;
 
         _context.SaveChanges();
         return true;

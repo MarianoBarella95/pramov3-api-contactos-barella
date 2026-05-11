@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using pramov3_ao_barella.Models;
 
 
 public class TokenProvider(IConfiguration configuration)
@@ -22,7 +23,7 @@ public class TokenProvider(IConfiguration configuration)
             Subject = new ClaimsIdentity(
                 [
                     new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
-                    new Claim(ClaimTypes.Actor, usuario.Nombre.ToString()),
+                    new Claim(ClaimTypes.Actor, usuario.UserName.ToString()),
                     new Claim(ClaimTypes.Role, usuario.Rol.ToString())
                 ]
             ),
